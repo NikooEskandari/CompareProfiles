@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% block maincontent_content %}
+    <head>
+        <style>
+            div#customer_files_list, div#tradearea_files_list{
+                padding: 0.5vw;
+            }
+        </style>
+    </head>
+
+    <script src='{{ asset('bundles/fosjsrouting/js/router.js') }}'></script>
+    <script src='{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}'></script>
+
+    <link rel='stylesheet' href='{{ asset('/bundles/map2umanifoldmaps/css/CompareProfiles_React/CompareProfiles.css')}}'>
+
+    <div id='root'></div>
+
+    <script>
+        let customerFiles_fromServer = {{ customerfiles|json_encode()|raw }};
+        let tradeareaFiles_fromServer = {{ tradeareafiles|json_encode()|raw }};
+        let tradeareaMaps_fromServer = {{ tradeareas|json_encode()|raw }};
+        let predefinedMarkets_fromServer = {{ markets|json_encode()|raw }};
+        let myFavourites_fromServer = {{ favorites|json_encode()|raw }};
+    </script>
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+    <script src='{{ asset('bundles/map2umanifoldmaps/js/CompareProfiles_React/CustomerFiles.js') }}'></script>
+    <script src='{{ asset('bundles/map2umanifoldmaps/js/CompareProfiles_React/TradeareaFiles.js') }}'></script>
+    <script src='{{ asset('bundles/map2umanifoldmaps/js/CompareProfiles_React/TradeareaMaps.js') }}'></script>
+    <script src='{{ asset('bundles/map2umanifoldmaps/js/CompareProfiles_React/CompareProfiles.js') }}'></script>
+
+    <link rel="stylesheet" src='{{ asset('bundles/map2umanifoldmaps/css/CompareProfiles_React/CompareProfiles.css') }}' />
+
+{% endblock %}
